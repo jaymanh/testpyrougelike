@@ -1,6 +1,6 @@
 from typing import Optional
 
-import tcod.event
+import tcod.event # type: ignore
 
 from actions import Action, EscapeAction, MovementAction
 

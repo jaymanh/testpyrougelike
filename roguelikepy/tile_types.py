@@ -13,8 +13,8 @@ graphic_dt = np.dtype(
 
 tile_dt = np.dtype(
     [
-        ("walkable", np.bool),
-        ("trasparent", np.bool),
+        ("walkable", np.bool_),
+        ("trasparent", np.bool_),
         ("dark", graphic_dt),
     ]
 )

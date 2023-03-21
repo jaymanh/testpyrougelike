@@ -19,7 +19,7 @@ def main() -> None:
     max_rooms = 30
 
     tileset = tcod.tileset.load_tilesheet(
-        "roguelikepy\dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
+        "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
     )
 
     event_handler = EventHandler()

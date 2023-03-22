@@ -23,13 +23,33 @@ class Action:
 class EscapeAction(Action):
     def perfrom(self, engine: Engine, entity: Entity) -> None:
         raise SystemExit()
-
-class MovementAction(Action):
-    def __init__(self, dx: int, dy: int):
+    
+class ActionwithDirection(Action):
+    def __init__(self, dx: int, dy: int) -> None:
         super().__init__()
-
         self.dx = dx
         self.dy = dy
+
+    def perform(self, engine: Engine, entity: Entity) -> None:
+        raise NotImplementedError()
+
+
+    def perform(self, engine: Engine, entity: Entity) -> None:
+        raise NotImplementedError()
+    
+
+class MeleeAction(ActionwithDirection):
+    def perform(self, engine: Engine, entity: Entity) -> None:
+        dest_x = entity.x + self.dx
+        dest_y = entity.y + self.dy
+        target = engine.game_map.get_blocking_entity_at_location(dest_x, dest_y)
+        if not target:
+            return #Nothing to attack
+        
+        print(f"You kickthe {target.name}, much to its annoyance!")
+
+
+class MovementAction(ActionwithDirection):
 
     def perform(self, engine: Engine, entity: Entity) -> None:
         dest_x = entity.x + self.dx
@@ -39,5 +59,22 @@ class MovementAction(Action):
             return # Destination out of bounds
         if not engine.game_map.tiles["walkable"][dest_x, dest_y]:
             return # Destination is blocked by a tile
+        if engine.game_map.get_blocking_entity_at_location(dest_x, dest_y):
+            return # return if blocked by entity
 
         entity.move(self.dx, self.dy)
+
+
+class BumpAction(ActionwithDirection):
+    def __init__(self) -> None:
+        super().__init__(dx=0, dy=0)
+
+    def perform(self, engine: Engine, entity: Entity) -> None:
+        dest_x = entity.x + self.dx
+        dest_y = entity.y + self.dy
+
+        if engine.game_map.get_blocking_entity_at_location(dest_x, dest_y):
+            return MeleeAction(self.dx, self.dy).perform(engine, entity)
+        
+        else:
+            return MovementAction(self.dx, self.dy).perform(engine, entity)

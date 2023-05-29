@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import tcod
 import copy
+import os
 
 from engine import Engine
 import entity_factories
@@ -19,9 +20,10 @@ def main() -> None:
     max_rooms = 30
     max_monsters_per_room = 2
 
-    tileset = tcod.tileset.load_tilesheet(
-        "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
-    )
+    filename = "dejavu10x10_gs_tc.png"
+    filepath = os.path.join("roguelikepy", filename)
+
+    tileset = tcod.tileset.load_tilesheet(filepath, 32, 8, tcod.tileset.CHARMAP_TCOD)
 
     player = copy.deepcopy(entity_factories.player)
 

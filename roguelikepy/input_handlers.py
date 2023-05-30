@@ -37,6 +37,15 @@ MOVE_KEYS = {
     tcod.event.K_u: (1, -1),
     tcod.event.K_b: (-1, 1),
     tcod.event.K_n: (1, 1),
+    #WASD keys
+    tcod.event.K_w: (0, -1),
+    tcod.event.K_s: (0, 1),
+    tcod.event.K_a: (-1, 0),
+    tcod.event.K_d: (1, 0),
+    tcod.event.K_q: (-1, -1),
+    tcod.event.K_e: (1, -1),
+    tcod.event.K_z: (-1, 1),
+    tcod.event.K_c: (1, 1),
 }
 
 WAIT_KEYS = {

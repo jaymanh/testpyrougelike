@@ -7,3 +7,4 @@ roguelikepy/__pycache__/input_handlers.cpython-310.pyc
 roguelikepy/__pycache__/procgen.cpython-310.pyc
 roguelikepy/__pycache__/tile_types.cpython-310.pyc
 roguelikepy/__pycache__
+*.pyc
